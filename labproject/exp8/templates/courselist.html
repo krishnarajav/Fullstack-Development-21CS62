@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h1>Course List</h1>
+        <ul>
+            {% for course in courses %}
+                <li>
+                    {{ course.c_id }} {{ course.c_name }} 
+                    <a href="{% url 'exp8_course_detail' course.c_id %}">View Students</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

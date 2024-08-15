@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body>
+    <h1>Student Registration</h1>
+    <h2>Course Name: {{ course.c_name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Submit</button>
+        <a href="{% url 'course_detail' course.c_id %}">Cancel</a>
+    </form>
+</body>
+</html>

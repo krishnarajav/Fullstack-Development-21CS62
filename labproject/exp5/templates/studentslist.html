@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Students' List</title>
+    </head>
+
+    <body>
+        <h1>Students</h1>
+        <ol>
+            {% for student in students %}
+                <li>{{ student }}</li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>

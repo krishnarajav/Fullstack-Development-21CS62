@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Students</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Search Students</h1>
+    <form id="searchForm">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchForm').on('submit', function(event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "{% url 'search_student' %}",
+                    data: {
+                        'search_term': $('#id_search_term').val()
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#results').empty();
+                        if (data.students.length > 0) {
+                            data.students.forEach(function(student) {
+                                var courses = student.courses.join(', ');
+                                $('#results').append('<p>' + student.name + ': ' + courses + '</p>');
+                            });
+                        } else {
+                            $('#results').append('<p>No students found</p>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
